@@ -51,6 +51,47 @@ const LESSONS = [
       "The founder used professional knowledge in international trade, such as market research, customs clearance, international logistics and foreign certification applications.",
       "In short, medical device trade is stable, profitable and has great potential."
     ]
+  },
+  {
+    id: "entrepreneur",
+    title: "Bài 4: Successful Entrepreneur",
+    text: [
+      "In my opinion, a successful entrepreneur has several important qualities.",
+      "First, they are brave.",
+      "They are not afraid to try new things and take risks.",
+      "Second, they are hard-working.",
+      "They never give up when facing difficulties.",
+      "Third, they are creative.",
+      "They can find new chances and solve problems in new ways.",
+      "Fourth, they are responsible.",
+      "They keep their promises and care about their customers.",
+      "Fifth, they can learn fast.",
+      "When the market changes, they can change their ways quickly.",
+      "In short, bravery, hard work, creativity, responsibility and quick learning make a successful entrepreneur."
+    ]
+  },
+  {
+    id: "xiaomi",
+    title: "Bài 5: Xiaomi Start-up Success Story",
+    text: [
+      "Xiaomi was founded in 2010 in China.",
+      "It started by making smartphones and now also sells tablets, laptops, home appliances, and smart home products.",
+      "It quickly became one of the world's top smartphone brands and a very successful tech start-up.",
+      "There are several reasons for its success.",
+      "First, Xiaomi sells high-quality phones at a much lower price than big brands.",
+      "People can buy good products without spending too much money.",
+      "Second, it focuses on users.",
+      "It listens to users' advice and updates its system often.",
+      "Users feel valued and trust the brand.",
+      "Third, it has strong online sales.",
+      "It mainly sells products online, which saves store costs.",
+      "This makes prices cheaper and sales faster.",
+      "Fourth, it has a wide product range.",
+      "From phones to TVs, watches, and home gadgets, people can buy many products from Xiaomi.",
+      "This helps form a loyal customer group.",
+      "Fifth, Xiaomi has an efficient team.",
+      "The team works fast, makes decisions quickly, and catches up with market trends in time."
+    ]
   }
 ];
 
