@@ -257,7 +257,31 @@ function OrderingPage({ lesson }) {
     setScore(null);
     setCheckedMap({});
   };
+  const handleTouchEnd = (e, fromIndex) => {
+  const touch = e.changedTouches?.[0];
+  if (!touch) {
+    setDragIndex(null);
+    return;
+  }
 
+  const target = document.elementFromPoint(touch.clientX, touch.clientY);
+  const dropTarget = target?.closest("[data-piece-index]");
+
+  if (!dropTarget) {
+    setDragIndex(null);
+    return;
+  }
+
+  const toIndex = Number(dropTarget.getAttribute("data-piece-index"));
+
+  if (Number.isNaN(toIndex) || dragIndex === null || toIndex === fromIndex) {
+    setDragIndex(null);
+    return;
+  }
+
+  setPieces((prev) => reorder(prev, fromIndex, toIndex));
+  setDragIndex(null);
+};
   return (
     <div className="grid gap-6 lg:grid-cols-[1.25fr_0.75fr]">
       <Card className="rounded-3xl border-0 shadow-lg">
@@ -275,24 +299,29 @@ function OrderingPage({ lesson }) {
             <div className="flex flex-wrap gap-3">
               {pieces.map((piece, index) => (
                 <motion.div
-                  key={piece.id}
-                  layout
-                  draggable
-                  onDragStart={() => setDragIndex(index)}
-                  onDragOver={(e) => e.preventDefault()}
-                  onDrop={() => {
-                    if (dragIndex === null || dragIndex === index) return;
-                    setPieces((prev) => reorder(prev, dragIndex, index));
-                    setDragIndex(null);
-                  }}
-                  className={`inline-flex max-w-full cursor-move items-center gap-2 rounded-2xl border px-4 py-3 text-sm leading-6 shadow-sm transition ${
-                    score === null
-                      ? "bg-white hover:bg-slate-100"
-                      : checkedMap[piece.id]
-                      ? "border-blue-400 bg-blue-100 text-blue-900 ring-2 ring-blue-300"
-                      : "border-red-500 bg-red-100 text-red-900 ring-2 ring-red-300"
-                  }`}
-                >
+  key={piece.id}
+  layout
+  data-piece-index={index}
+  draggable
+  onDragStart={() => setDragIndex(index)}
+  onDragOver={(e) => e.preventDefault()}
+  onDrop={() => {
+    if (dragIndex === null || dragIndex === index) return;
+    setPieces((prev) => reorder(prev, dragIndex, index));
+    setDragIndex(null);
+  }}
+  onTouchStart={() => setDragIndex(index)}
+  onTouchMove={(e) => e.preventDefault()}
+  onTouchEnd={(e) => handleTouchEnd(e, index)}
+  style={{ touchAction: "none" }}
+  className={`inline-flex max-w-full cursor-move items-center gap-2 rounded-2xl border px-4 py-3 text-sm leading-6 shadow-sm transition ${
+    score === null
+      ? "bg-white hover:bg-slate-100"
+      : checkedMap[piece.id]
+      ? "border-blue-400 bg-blue-100 text-blue-900 ring-2 ring-blue-300"
+      : "border-red-500 bg-red-100 text-red-900 ring-2 ring-red-300"
+  }`}
+>
                   <GripVertical className="h-4 w-4 shrink-0 text-slate-400" />
                   <span>{piece.text}</span>
                 </motion.div>
